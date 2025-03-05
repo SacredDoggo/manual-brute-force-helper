@@ -1,5 +1,5 @@
 interface TriedPassword {
-    id: String;
-    user_id: String;
-    password: String;
+    id: string;
+    user_id: string;
+    password: string;
 }
