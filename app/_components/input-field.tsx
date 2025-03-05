@@ -1,7 +1,6 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
-import { TriedPassword } from "@prisma/client";
 import { Dispatch, SetStateAction, useState } from "react";
 import { toast } from "sonner";
 
