@@ -2,6 +2,7 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { TriedPasswordCard } from "./tried-password-card";
+import { TriedPassword } from "@prisma/client";
 
 interface TriedPasswordFieldInterface {
     passwords: TriedPassword[];

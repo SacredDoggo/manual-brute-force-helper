@@ -3,6 +3,7 @@
 import { UserButton } from "@clerk/nextjs";
 import { Dispatch, SetStateAction, useState } from "react";
 import { toast } from "sonner";
+import { TriedPassword } from "@prisma/client";
 
 interface InputFieldInterface {
     passwords: TriedPassword[];
