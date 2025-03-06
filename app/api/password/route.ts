@@ -17,14 +17,17 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "bad request", message: "Arguments missing" });
 
     try {
+
         const duplicate_password = await prisma.triedPassword.findUnique({
             where: {
-                user_id: userId,
-                password: password
+                user_id_password: {
+                    user_id: userId,
+                    password: password
+                }
             }
         });
 
-        if (duplicate_password) return NextResponse.json({ error: "Password already exists" }, { status: 409 });
+        if (duplicate_password != null) return NextResponse.json({ error: "Password already exists" }, { status: 409 });
 
         const tried_password = await prisma.triedPassword.create({
             data: {

@@ -33,10 +33,10 @@ export const InputField = () => {
                     "Content-type": "application/json; charset=UTF-8",
                 },
             })
-                .then(data => data.json())
-                .then((data) => {
-                    if (!data.password) toast.error("Password already exists or some other error");
+                .then(async (response) => {
+                    if (response.status == 409) toast.error("Password already exists");
                     else {
+                        const data = await response.json();
                         setPasswords([data.password, ...passwords]);
                         setPasswordValue("");
                     }
