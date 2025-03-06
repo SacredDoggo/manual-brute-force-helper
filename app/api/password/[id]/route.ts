@@ -36,6 +36,10 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
         return NextResponse.json({ deleted_password }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: "error", message: error }, { status: 500 });
+        console.error("Database error:", error); // Add this
+        return NextResponse.json(
+            { error: "Internal Server Error", message: error instanceof Error ? error.message : "Unknown error" },
+            { status: 500 }
+        );
     }
 }

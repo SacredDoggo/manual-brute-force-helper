@@ -22,7 +22,6 @@ export const InputField = () => {
             return;
         }
         setSending(true);
-        await new Promise(resolve => setTimeout(resolve, 4000))
 
         try {
             fetch("/api/password", {
