@@ -6,7 +6,7 @@ import { hasEnoughTimePassed } from "@/lib/utils";
 
 export async function POST(req: NextRequest) {
     if (!hasEnoughTimePassed(req))
-        return NextResponse.json({ message: "Requests too frequent" }, { status: 429 });
+        return NextResponse.json({ error: "Requests too frequent" }, { status: 429 });
 
     const { userId } = await auth();
     if (!userId)
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
     const { password } = await req.json();
     if (!password)
-        return NextResponse.json({ status: "bad request", message: "Arguments missing" });
+        return NextResponse.json({ error: "bad request", message: "Arguments missing" });
 
     try {
         const tried_password = await prisma.triedPassword.create({
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ password: tried_password });
     } catch (error) {
-        return NextResponse.json({ status: "error", message: error });
+        return NextResponse.json({ error: "error", message: error }, { status: 500 });
     }
 };
 

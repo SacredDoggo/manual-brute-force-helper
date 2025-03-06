@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
 import { Toaster } from "sonner";
+import { StateProvider } from "@/providers/shared-state-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,16 +33,28 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <SignedOut>
-            <div className="flex h-full w-full justify-center items-center p-4 gap-4">
-            <div>Please log in to continue</div>
-              <SignInButton />
-              <SignUpButton />
+            <div className="flex flex-col h-full w-full justify-center items-center p-4 gap-4">
+              <p className="font-mono">Please login to continue</p>
+              <div className="flex gap-x-2">
+                <SignInButton mode="modal">
+                  <button className="w-20 hover:bg-white/10 cursor-pointer p-2 rounded-sm transition">
+                    Login
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="bg-black w-20 text-white hover:bg-white/90 dark:bg-white dark:text-black cursor-pointer p-2 rounded-sm transition">
+                    Sign up
+                  </button>
+                </SignUpButton>
+              </div>
             </div>
           </SignedOut>
           <SignedIn>
-            {children}
-            <ModalProvider />
-            <Toaster position="bottom-center" />
+            <StateProvider>
+              {children}
+              <ModalProvider />
+              <Toaster position="bottom-center" />
+            </StateProvider>
           </SignedIn>
         </body>
       </html>

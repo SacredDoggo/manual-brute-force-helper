@@ -23,3 +23,14 @@ model TriedPassword {
 
   @@unique([user_id, password])
 }
+
+model DeletedTriedPassword {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  user_id  String
+  password String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([user_id, password])
+}

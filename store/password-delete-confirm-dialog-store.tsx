@@ -10,6 +10,11 @@ type PasswordDeleteConfirmDialogStore = {
 
     triedPasswordToBeDeletedId: string;
     setTriedPasswordToBeDeletedId: (tried_password_id: string) => void;
+
+    triedPasswordToBeDeletedIndex: number;
+    setTriedPasswordToBeDeletedIndex: (index: number) => void;
+
+    resetData: () => void;
 };
 
 export const usePasswordDeleteConfirmDialogStore = create<PasswordDeleteConfirmDialogStore>((set) => ({
@@ -21,5 +26,14 @@ export const usePasswordDeleteConfirmDialogStore = create<PasswordDeleteConfirmD
     setTriedPasswordToBeDeleted: (tried_password) => set({ triedPasswordToBeDeleted: tried_password }),
 
     triedPasswordToBeDeletedId: "",
-    setTriedPasswordToBeDeletedId: (tried_password_id) => set({ triedPasswordToBeDeletedId: tried_password_id })
+    setTriedPasswordToBeDeletedId: (tried_password_id) => set({ triedPasswordToBeDeletedId: tried_password_id }),
+
+    triedPasswordToBeDeletedIndex: -1,
+    setTriedPasswordToBeDeletedIndex: (index: number) => set({ triedPasswordToBeDeletedIndex: index }),
+
+    resetData: () => set({
+        triedPasswordToBeDeleted: "",
+        triedPasswordToBeDeletedId: "",
+        triedPasswordToBeDeletedIndex: -1
+    })
 }));
