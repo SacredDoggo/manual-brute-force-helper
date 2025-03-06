@@ -30,7 +30,5 @@ model DeletedTriedPassword {
   password String
 
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@unique([user_id, password])
+  deleted_at DateTime @default(now())
 }

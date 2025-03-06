@@ -35,7 +35,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
                 user_id: userId,
                 password: tried_Password_to_be_deleted.password
             }
-        })
+        });
 
         return NextResponse.json({ deleted_password }, { status: 200 });
     } catch (error) {
