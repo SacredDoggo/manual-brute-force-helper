@@ -1,6 +1,9 @@
-import { hasEnoughTimePassed } from "@/lib/utils";
-import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+
+import prisma from "@/lib/prisma";
+import { hasEnoughTimePassed } from "@/lib/utils";
+
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     if (!hasEnoughTimePassed(req))
